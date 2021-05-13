@@ -38,6 +38,10 @@ class AdminOrVoter : Fragment() {
         binding.buttonGo.setOnClickListener {
             if(asAdminOrVoter == "voter"){
                 var res = checkIsRegisteredVoter(binding.editTextAdminOrVoter.text.toString())
+
+
+
+
                 if(res){
                     toast("Account Verified!! You are a registered Voter!!!")
                 }
@@ -47,6 +51,12 @@ class AdminOrVoter : Fragment() {
             }
             else if(asAdminOrVoter == "admin"){
                 var res = checkIsAdmin(binding.editTextAdminOrVoter.text.toString())
+
+
+                //navigate to admin
+                view?.findNavController()?.navigate(R.id.action_adminOrVoter_to_admin)
+
+
                 if(res){
                     toast("Account Verified!! You are the Administrator of the Contract!!!")
                 }
