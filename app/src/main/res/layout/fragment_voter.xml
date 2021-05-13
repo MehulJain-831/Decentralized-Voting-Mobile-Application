@@ -7,12 +7,16 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textView"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:layout_marginEnd="50dp"
+            android:text="The getter and setter methods that are available for the Voter are:"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +34,7 @@
         <ScrollView
             android:id="@+id/scrollView2"
             android:layout_width="0dp"
-            android:layout_height="514dp"
+            android:layout_height="0dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
@@ -108,25 +112,25 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/buttonGetWinningProposalID" />
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonGetIsRegisteredVoter"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="Is Registered Voter?"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/textViewGetWorkflowStatus" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonGetIsRegisteredVoter"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="Is Registered Voter?"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/textViewGetWorkflowStatus" />-->
 
-<!--                <TextView-->
-<!--                    android:id="@+id/textViewGetIsRegisteredVoter"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="TextView"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonGetIsRegisteredVoter" />-->
+                <!--                <TextView-->
+                <!--                    android:id="@+id/textViewGetIsRegisteredVoter"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="TextView"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonGetIsRegisteredVoter" />-->
                 <!--            -->
                 <TextView
                     android:id="@+id/textViewVoterSet"
@@ -175,67 +179,67 @@
                     app:layout_constraintStart_toEndOf="@+id/buttonSetVote" />
 
                 <!--                <Button-->
-<!--                    android:id="@+id/buttonSetRegisterProposal"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="Register Proposal"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetRegisterVoter" />-->
+                <!--                    android:id="@+id/buttonSetRegisterProposal"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="Register Proposal"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetRegisterVoter" />-->
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonSetStartVotingSession"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="Start Voting Session"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetRegisterProposal" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonSetStartVotingSession"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="Start Voting Session"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetRegisterProposal" />-->
 
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonSetEndVotingSession"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="End Voting Session"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetStartVotingSession" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonSetEndVotingSession"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="End Voting Session"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetStartVotingSession" />-->
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonSetStartProposalRegistration"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="Start Proposal Registration"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetEndVotingSession" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonSetStartProposalRegistration"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="Start Proposal Registration"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetEndVotingSession" />-->
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonSetEndProposalRegistration"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:text="End Proposal Registration"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetStartProposalRegistration" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonSetEndProposalRegistration"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:text="End Proposal Registration"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetStartProposalRegistration" />-->
 
-<!--                <Button-->
-<!--                    android:id="@+id/buttonSetTallyVotes"-->
-<!--                    android:layout_width="wrap_content"-->
-<!--                    android:layout_height="wrap_content"-->
-<!--                    android:layout_marginStart="16dp"-->
-<!--                    android:layout_marginTop="8dp"-->
-<!--                    android:layout_marginBottom="16dp"-->
-<!--                    android:text="Tally Votes"-->
-<!--                    app:layout_constraintBottom_toBottomOf="parent"-->
-<!--                    app:layout_constraintStart_toStartOf="parent"-->
-<!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetEndProposalRegistration" />-->
+                <!--                <Button-->
+                <!--                    android:id="@+id/buttonSetTallyVotes"-->
+                <!--                    android:layout_width="wrap_content"-->
+                <!--                    android:layout_height="wrap_content"-->
+                <!--                    android:layout_marginStart="16dp"-->
+                <!--                    android:layout_marginTop="8dp"-->
+                <!--                    android:layout_marginBottom="16dp"-->
+                <!--                    android:text="Tally Votes"-->
+                <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+                <!--                    app:layout_constraintStart_toStartOf="parent"-->
+                <!--                    app:layout_constraintTop_toBottomOf="@+id/buttonSetEndProposalRegistration" />-->
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
