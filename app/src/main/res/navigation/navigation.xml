@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/contractAndCredential">
+
+    <fragment
+        android:id="@+id/contractAndCredential"
+        android:name="com.example.votingapp.ContractAndCredential"
+        android:label="fragment_contract_and_credential"
+        tools:layout="@layout/fragment_contract_and_credential" >
+        <action
+            android:id="@+id/action_contractAndCredential_to_adminOrVoter"
+            app:destination="@id/adminOrVoter" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminOrVoter"
+        android:name="com.example.votingapp.AdminOrVoter"
+        android:label="fragment_admin_or_voter"
+        tools:layout="@layout/fragment_admin_or_voter" >
+        <action
+            android:id="@+id/action_adminOrVoter_to_voter"
+            app:destination="@id/voter" />
+        <action
+            android:id="@+id/action_adminOrVoter_to_admin"
+            app:destination="@id/admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/voter"
+        android:name="com.example.votingapp.Voter"
+        android:label="fragment_voter"
+        tools:layout="@layout/fragment_voter" />
+    <fragment
+        android:id="@+id/admin"
+        android:name="com.example.votingapp.Admin"
+        android:label="fragment_admin"
+        tools:layout="@layout/fragment_admin" />
+</navigation>

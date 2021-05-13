@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.votingapp.databinding.FragmentContractAndCredentialBinding
 import okhttp3.Credentials
 
@@ -28,6 +29,7 @@ class ContractAndCredential : Fragment() {
                 if(checkCredentials()){
                     toast("Contract and Credentials found and verified successfully!!!")
                     //navigate to next screen
+                    view?.findNavController()?.navigate(R.id.action_contractAndCredential_to_adminOrVoter)
                 }
                 else{
                     //invalid credentials or contract

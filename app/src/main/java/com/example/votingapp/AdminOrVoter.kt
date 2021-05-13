@@ -11,10 +11,7 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.navigation.findNavController
 import com.example.votingapp.databinding.FragmentAdminOrVoterBinding
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
+import kotlinx.coroutines.*
 import org.web3j.abi.datatypes.Bool
 import org.web3j.crypto.Credentials
 import java.math.BigInteger
@@ -82,13 +79,14 @@ class AdminOrVoter : Fragment() {
     }
     private fun checkIsAdmin(inputAddress: String): Boolean {
         var res: Boolean = false
-        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+        CoroutineScope(Dispatchers.Main).async {
             val result: String
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.isAdministrator(inputAddress).sendAsync()
                 res = true
                 simpleVoting.get().toString()
+
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
@@ -103,15 +101,15 @@ class AdminOrVoter : Fragment() {
 
     private fun checkIsRegisteredVoter(inputAddress: String): Boolean {
         var res: Boolean = false
-        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
-            val result: String
-            result = try {
+        val waitFor = CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+            var result: String
+            try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.isRegisteredVoter(inputAddress).sendAsync()
                 res = true
-                simpleVoting.get().toString()
+                result = simpleVoting.get().toString()
             } catch (e: Exception) {
-                "Error reading the smart contract. Error: " + e.message
+                result = "Error reading the smart contract. Error: " + e.message
             }
 
             withContext(Dispatchers.Main) {
@@ -119,6 +117,7 @@ class AdminOrVoter : Fragment() {
                 toast(result)
             }
         }
+
         return res
     }
 
