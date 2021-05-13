@@ -1,5 +1,6 @@
 package com.example.votingapp
 
+import android.graphics.DiscretePathEffect
 import android.opengl.Visibility
 import android.os.Bundle
 import android.util.Log
@@ -37,31 +38,30 @@ class AdminOrVoter : Fragment() {
         }
         binding.buttonGo.setOnClickListener {
             if(asAdminOrVoter == "voter"){
-                var res = checkIsRegisteredVoter(binding.editTextAdminOrVoter.text.toString())
-
-
-
-
-                if(res){
-                    toast("Account Verified!! You are a registered Voter!!!")
-                }
-                else{
-                    toast("Account is not registered!! Please contact Admin to get registered!!!")
+                CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+                    var res = checkIsRegisteredVoter(binding.editTextAdminOrVoter.text.toString())
+                    withContext(Dispatchers.Main) {
+                        if (res) {
+                            toast("Account Verified!! You are a registered Voter!!!")
+                            view?.findNavController()?.navigate(R.id.action_adminOrVoter_to_voter)
+                        } else {
+                            toast("Account is not registered!! Please contact Admin to get registered!!!")
+                        }
+                    }
                 }
             }
             else if(asAdminOrVoter == "admin"){
-                var res = checkIsAdmin(binding.editTextAdminOrVoter.text.toString())
-
-
-                //navigate to admin
-                view?.findNavController()?.navigate(R.id.action_adminOrVoter_to_admin)
-
-
-                if(res){
-                    toast("Account Verified!! You are the Administrator of the Contract!!!")
-                }
-                else{
-                    toast("Account is not registered!! You are not the Administrator!!!")
+                CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+                    var res = checkIsAdmin(binding.editTextAdminOrVoter.text.toString())
+                    //navigate to admin
+                    withContext(Dispatchers.Main) {
+                        if (res) {
+                            toast("Account Verified!! You are the Administrator of the Contract!!!")
+                            view?.findNavController()?.navigate(R.id.action_adminOrVoter_to_admin)
+                        } else {
+                            toast("Account is not registered!! You are not the Administrator!!!")
+                        }
+                    }
                 }
             }
         }
@@ -87,31 +87,41 @@ class AdminOrVoter : Fragment() {
         binding.editTextAdminOrVoter.requestFocus()
         binding.buttonGo.visibility = View.VISIBLE
     }
-    private fun checkIsAdmin(inputAddress: String): Boolean {
+    private suspend fun checkIsAdmin(inputAddress: String): Boolean {
         var res: Boolean = false
-        CoroutineScope(Dispatchers.Main).async {
-            val result: String
-            result = try {
-                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
-                val simpleVoting = simpleVoter.isAdministrator(inputAddress).sendAsync()
-                res = true
-                simpleVoting.get().toString()
 
-            } catch (e: Exception) {
-                "Error reading the smart contract. Error: " + e.message
-            }
+        var job: Job = CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
 
-            withContext(Dispatchers.Main) {
-                Log.i("AV CheckIsAdmin","${result}")
-                toast(result)
-            }
+                val result:String
+                result = try {
+                    val simpleVoter = SimpleVoting.load(
+                        CONTRACT_ADDRESS,
+                        web3j,
+                        credentials,
+                        getGasPrice(),
+                        getGasLimit()
+                    )
+                    val simpleVoting = simpleVoter.isAdministrator(inputAddress).sendAsync()
+                    res = true
+                    simpleVoting.get().toString()
+
+                } catch (e: Exception) {
+                     "Error reading the smart contract. Error: " + e.message
+
+                }
+                withContext(Dispatchers.Main){
+                    Log.i("AV checkisAdmin","${result}")
+                }
+
+
         }
+        job.join()
         return res
     }
 
-    private fun checkIsRegisteredVoter(inputAddress: String): Boolean {
+    private suspend fun checkIsRegisteredVoter(inputAddress: String): Boolean {
         var res: Boolean = false
-        val waitFor = CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+        val job: Job = CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
             var result: String
             try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
@@ -124,10 +134,9 @@ class AdminOrVoter : Fragment() {
 
             withContext(Dispatchers.Main) {
                 Log.i("AV check is reg voter","${result}")
-                toast(result)
             }
         }
-
+        job.join()
         return res
     }
 
