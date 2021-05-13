@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.math.BigInteger
+import java.util.concurrent.TimeUnit
 
 
 class Admin : Fragment() {
@@ -31,7 +32,7 @@ class Admin : Fragment() {
 
         binding.buttonGetProposalDescription.setOnClickListener {
             val inputIndex = binding.editTextGetProposalDescription.text.toString()
-            if(inputIndex == null){
+            if(inputIndex.equals(null)){
                 toast("Index is null!! Please provide an index")
             }
             else{
@@ -52,7 +53,7 @@ class Admin : Fragment() {
         }
         binding.buttonGetIsRegisteredVoter.setOnClickListener {
             val inputIndex = binding.editTextGetIsRegisteredVoter.text.toString()
-            if(inputIndex == null){
+            if(inputIndex.equals(null)){
                 toast("Account Address is null!! Please provide an Account Address")
             }
             else{
@@ -62,25 +63,37 @@ class Admin : Fragment() {
 
         //setters
         binding.buttonSetRegisterProposal.setOnClickListener {
-
+            var propDesc = binding.editTextSetRegisterProposal.text.toString()
+            if(propDesc.equals(null)){
+                toast("Proposal Description should be non empty")
+            }
+            else{
+                RegisterProposal(propDesc)
+            }
         }
         binding.buttonSetRegisterVoter.setOnClickListener {
-
+            var voterAdd = binding.editTextSetRegisterVoter.text.toString()
+            if(voterAdd.equals(null)){
+                toast("Voter Address is not provided that has to be registered!!")
+            }
+            else{
+                RegisterVoter(voterAdd)
+            }
         }
         binding.buttonSetStartProposalRegistration.setOnClickListener {
-
+            StartProposalRegistration()
         }
         binding.buttonSetEndProposalRegistration.setOnClickListener {
-
+            EndProposalRegistration()
         }
         binding.buttonSetStartVotingSession.setOnClickListener {
-
+            StartVotingSession()
         }
         binding.buttonSetEndVotingSession.setOnClickListener {
-
+            EndVotingSession()
         }
         binding.buttonSetTallyVotes.setOnClickListener {
-
+            TallyVotes()
         }
 
         return binding.root
@@ -92,13 +105,13 @@ class Admin : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.getProposalDescription(index.toBigInteger()).sendAsync()
-                simpleVoting.get()
+                "Description of proposal is " + simpleVoting.get()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
 
             withContext(Dispatchers.Main) {
-                Log.i("Get","${result}")
+                Log.i("Get", result)
                 toast(result)
             }
         }
@@ -110,13 +123,13 @@ class Admin : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.proposalsNumber.sendAsync()
-                simpleVoting.get().toString()
+                "Number of proposals are : " + simpleVoting.get().toString()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
 
             withContext(Dispatchers.Main) {
-                Log.i("GetProposalNumbers","${result}")
+                Log.i("GetProposalNumbers", result)
                 toast(result)
             }
         }
@@ -129,13 +142,13 @@ class Admin : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.winningProposalDescription.sendAsync()
-                simpleVoting.get().toString()
+                "Winning Proposal Description is : " + simpleVoting.get().toString()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
 
             withContext(Dispatchers.Main) {
-                Log.i("GetWinningProposalDesc","${result}")
+                Log.i("GetWinningProposalDesc", result)
                 toast(result)
             }
         }
@@ -148,13 +161,13 @@ class Admin : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.winningProposalId.sendAsync()
-                simpleVoting.get().toString()
+                "Winning Proposal ID is " + simpleVoting.get().toString()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
 
             withContext(Dispatchers.Main) {
-                Log.i("GetWinningProposalID","${result}")
+                Log.i("GetWinningProposalID", result)
                 toast(result)
             }
         }
@@ -173,10 +186,10 @@ class Admin : Fragment() {
             }
 
             withContext(Dispatchers.Main) {
-                Log.i("GetWorkFlowStatus","${result}")
+                Log.i("GetWorkFlowStatus", result)
 //                binding.textViewGetWorkFlowStatus.visibility = View.VISIBLE
 //                binding.textViewGetWorkFlowStatus.text = result
-                var resultStr :String
+                val resultStr :String
                 resultStr = when(result){
                     "0"-> "Voter Registration Phase"
                     "1"-> "Proposal Registration Phase Starts"
@@ -203,8 +216,9 @@ class Admin : Fragment() {
             }
 
             withContext(Dispatchers.Main) {
-                Log.i("GetIsAdmin","${result}")
-                var resultStr = when(result.toString()){
+                Log.i("GetIsAdmin", result)
+                val resultStr = when (result.toString()) {
+
                     "true" -> "The Voter is Registered!!!"
                     "false" -> "The Voter is not Registered!!!"
                     else -> result.toString()
@@ -214,7 +228,134 @@ class Admin : Fragment() {
         }
     }
 
+    //setter methods
+    private fun RegisterProposal(propDesc : String) {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
 
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.registerProposal(propDesc).sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully added the proposal. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("Set Register Prop", result)
+                toast(result)
+            }
+        }
+    }
+
+    private fun RegisterVoter(voterAdd: String) {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.registerVoter(voterAdd).sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully Registered the Voter. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("Set Register Voter", result)
+                toast(result)
+            }
+        }
+    }
+    private fun StartProposalRegistration() {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.startProposalsRegistration().sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully Started Proposal Registration Phase. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("SetProposalReg Start", result)
+                toast(result)
+            }
+        }
+    }
+    private fun EndProposalRegistration() {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.endProposalsRegistration().sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully Ended Proposal Registration Phase. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("SetProposalReg end", result)
+                toast(result)
+            }
+        }
+    }
+    private fun StartVotingSession() {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.startVotingSession().sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully Started Voting Session Phase. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("SetVotingSession Start", result)
+                toast(result)
+            }
+        }
+    }
+    private fun EndVotingSession() {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.endVotingSession().sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully Ended Voting Session Phase. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("SetVotingSession End", result)
+                toast(result)
+            }
+        }
+    }
+    private fun TallyVotes() {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.tallyVotes().sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully tallied the votes. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("Set Tally votes", result)
+                toast(result)
+            }
+        }
+    }
 
     ////////////////////////////////////
     private fun getGasPrice(): BigInteger {

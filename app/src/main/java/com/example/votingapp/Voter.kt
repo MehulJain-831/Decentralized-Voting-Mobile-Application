@@ -14,6 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.math.BigInteger
+import java.util.concurrent.TimeUnit
 
 
 class Voter : Fragment() {
@@ -53,12 +54,20 @@ class Voter : Fragment() {
         //setters
 
         binding.buttonSetVote.setOnClickListener {
-
+            val propID = binding.editTextSetVote.text.toString()
+            if(propID == null){
+                toast("Proposal Index is null!!! Please provide a proposal index to vote")
+            }
+            else {
+                Vote(propID)
+            }
         }
 
 
         return binding.root
     }
+
+    //getter methods
     private fun GetProposalDesc(index: String) {
         CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
 
@@ -66,7 +75,7 @@ class Voter : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.getProposalDescription(index.toBigInteger()).sendAsync()
-                simpleVoting.get()
+                "Description of proposal is " + simpleVoting.get()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
@@ -84,7 +93,7 @@ class Voter : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.proposalsNumber.sendAsync()
-                simpleVoting.get().toString()
+                "Number of proposals are : " + simpleVoting.get().toString()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
@@ -103,7 +112,7 @@ class Voter : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.winningProposalDescription.sendAsync()
-                simpleVoting.get().toString()
+                "Winning Proposal Description is : " + simpleVoting.get().toString()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
@@ -122,7 +131,7 @@ class Voter : Fragment() {
             result = try {
                 val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
                 val simpleVoting = simpleVoter.winningProposalId.sendAsync()
-                simpleVoting.get().toString()
+                "Winning Proposal ID is " + simpleVoting.get().toString()
             } catch (e: Exception) {
                 "Error reading the smart contract. Error: " + e.message
             }
@@ -164,6 +173,27 @@ class Voter : Fragment() {
             }
         }
     }
+    //setter methods
+    private fun Vote(propID : String) {
+        CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
+
+            val result: String
+            result = try {
+                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                val transactionReceipt = simpleVoter.vote(propID.toBigInteger()).sendAsync().get(3, TimeUnit.MINUTES)
+                "Successfully Voted for the proposal. Gas used: " + transactionReceipt.gasUsed
+            } catch (e: Exception) {
+                "Error during transaction. Error: " + e.message
+            }
+
+            withContext(Dispatchers.Main) {
+                Log.i("Set Vote","${result}")
+                toast(result)
+            }
+        }
+    }
+
+
     ////////////////////////////////////
     private fun getGasPrice(): BigInteger {
         val gasPriceGwei = 50
