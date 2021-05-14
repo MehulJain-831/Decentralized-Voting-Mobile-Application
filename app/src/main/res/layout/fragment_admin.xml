@@ -15,8 +15,10 @@
           android:layout_marginStart="50dp"
           android:layout_marginTop="16dp"
           android:layout_marginEnd="50dp"
-          android:text="The getter and setter methods that are available for the Administrator"
-          android:textSize="18sp"
+          android:text="THE GETTER AND SETTER METHODS AVAILABLE FOR THE ADMINISTRATOR"
+          android:textAlignment="center"
+          android:textSize="22sp"
+          android:textStyle="bold|italic"
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent" />
@@ -40,7 +42,7 @@
           android:layout_marginStart="32dp"
           android:layout_marginEnd="32dp"
           android:layout_marginBottom="16dp"
-          android:text="To Know More about the methods of the Administrator, click the button below"
+          android:text="To Know More about the methods of the Administrator and ther working, click the button below"
           android:textAlignment="center"
           app:layout_constraintBottom_toTopOf="@+id/buttonAbout"
           app:layout_constraintEnd_toEndOf="parent"
@@ -72,9 +74,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="1. Getter Functions for the Admin"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.0" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <Button
                 android:id="@+id/buttonGetProposalDescription"
@@ -145,6 +148,8 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:text="2. Setter Functions for the Admin"
+                android:textSize="18sp"
+                android:textStyle="bold"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/buttonGetIsRegisteredVoter" />
 
@@ -230,6 +235,7 @@
                 android:ems="10"
                 android:hint="Proposal Index"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/buttonGetProposalDescription"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonGetProposalDescription" />
@@ -243,6 +249,7 @@
                 android:ems="10"
                 android:hint="Voter Address"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/buttonGetIsRegisteredVoter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonGetIsRegisteredVoter" />
@@ -256,6 +263,7 @@
                 android:ems="10"
                 android:hint="Voter Address"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/buttonSetRegisterVoter"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonSetRegisterVoter" />
@@ -269,6 +277,7 @@
                 android:ems="10"
                 android:hint="Proposal Description"
                 android:inputType="textPersonName"
+                android:textSize="16sp"
                 app:layout_constraintBaseline_toBaselineOf="@+id/buttonSetRegisterProposal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/buttonSetRegisterProposal" />
