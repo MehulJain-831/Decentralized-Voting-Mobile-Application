@@ -36,12 +36,20 @@
         android:id="@+id/voter"
         android:name="com.example.votingapp.Voter"
         android:label="fragment_voter"
-        tools:layout="@layout/fragment_voter" />
+        tools:layout="@layout/fragment_voter" >
+        <action
+            android:id="@+id/action_voter_to_voterKnowMore"
+            app:destination="@id/voterKnowMore" />
+    </fragment>
     <fragment
         android:id="@+id/admin"
         android:name="com.example.votingapp.Admin"
         android:label="fragment_admin"
-        tools:layout="@layout/fragment_admin" />
+        tools:layout="@layout/fragment_admin" >
+        <action
+            android:id="@+id/action_admin_to_adminKnowMore"
+            app:destination="@id/adminKnowMore" />
+    </fragment>
     <fragment
         android:id="@+id/contractAndCredentialsKnowMore"
         android:name="com.example.votingapp.ContractAndCredentialsKnowMore"
@@ -59,5 +67,23 @@
         <action
             android:id="@+id/action_aminOrVoterKnowMore_to_adminOrVoter"
             app:destination="@id/adminOrVoter" />
+    </fragment>
+    <fragment
+        android:id="@+id/adminKnowMore"
+        android:name="com.example.votingapp.AdminKnowMore"
+        android:label="fragment_admin_know_more"
+        tools:layout="@layout/fragment_admin_know_more" >
+        <action
+            android:id="@+id/action_adminKnowMore_to_admin"
+            app:destination="@id/admin" />
+    </fragment>
+    <fragment
+        android:id="@+id/voterKnowMore"
+        android:name="com.example.votingapp.VoterKnowMore"
+        android:label="fragment_voter_know_more"
+        tools:layout="@layout/fragment_voter_know_more" >
+        <action
+            android:id="@+id/action_voterKnowMore_to_voter"
+            app:destination="@id/voter" />
     </fragment>
 </navigation>

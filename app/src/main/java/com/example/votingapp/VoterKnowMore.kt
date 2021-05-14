@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.votingapp.databinding.FragmentVoterKnowMoreBinding
 
 class VoterKnowMore : Fragment() {
@@ -16,7 +17,9 @@ class VoterKnowMore : Fragment() {
     ): View? {
         var binding : FragmentVoterKnowMoreBinding = DataBindingUtil.inflate(inflater,R.layout.fragment_voter_know_more,container,false)
 
-
+        binding.buttonback.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_voterKnowMore_to_voter)
+        }
         return binding.root
     }
 

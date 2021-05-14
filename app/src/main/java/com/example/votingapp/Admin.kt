@@ -11,6 +11,7 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.votingapp.databinding.FragmentAdminBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +29,10 @@ class Admin : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate<FragmentAdminBinding>(inflater,R.layout.fragment_admin,container,false)
+
+        binding.buttonAbout.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_admin_to_adminKnowMore)
+        }
 
         //getters
 

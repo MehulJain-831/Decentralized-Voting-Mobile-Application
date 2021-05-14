@@ -2,4 +2,55 @@
     <string name="app_name">Voting App</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+    //voter know more
+    <string name="voterIntro">
+        <i><b>Know More about the functions the a Voter can access</b></i>
+    </string>
+    <string name="voterGetIntro">
+        1. <b>Getter Functions for the Voter</b> (Methods that are used to extract value from a contract without changing it)
+    </string>
+    <string name="voterGet">  <li><b>Proposal Description :</b> Provided an index(0 based), the voter gets the Proposal Description if the index valu is valid.</li>\n
+         <li><b>Total Proposals :</b> It returns the total number of registered proposals. </li>\n
+         <li><b>Winning Proposal Description :</b> It returns the Description of the Winning Proposal only after when votes are tallied.</li>\n
+         <li><b>Winning Proposal ID :</b> It returns the ID of the Winning Proposal only after when the votes are tallied.</li>\n
+         <li><b>Workflow Status :</b> It returns the current phase in which the poll currently is in, like the start or end of the voting session and proposal registration session, or the phase when votes are tallied</li>\n
+    </string>
+    <string name="voterSetIntro">
+        2. <b>Setter Functions for the Voter</b> (Methods that are used to write value to smart contract)
+    </string>
+    <string name="voterSet">
+        <li><b>Vote :</b> It is a method to vote for the Proposal whose ID you have provided(If valid).</li>
+    </string>
+
+
+    //admin know more
+    <string name="adminIntro">
+        <i><b>Know More about the functions the an Administrator can access</b></i>
+    </string>
+    <string name="adminGetIntro">
+        1. <b>Getter Functions for the Administrator</b> (Methods that are used to extract value from a contract without changing it)
+    </string>
+    <string name="adminGet">
+        <li><b>Proposal Description :</b> Provided an index(0 based), the voter gets the Proposal Description if the index valu is valid.</li>\n
+        <li><b>Total Proposals :</b> It returns the total number of registered proposals. </li>\n
+        <li><b>Winning Proposal Description :</b> It returns the Description of the Winning Proposal only after when votes are tallied.</li>\n
+        <li><b>Winning Proposal ID :</b> It returns the ID of the Winning Proposal only after when the votes are tallied.</li>\n
+        <li><b>Workflow Status :</b> It returns the current phase in which the poll currently is in, like the start or end of the voting session and proposal registration session, or the phase when votes are tallied</li>\n
+        <li><b>Is Registered Voter :</b> To check whether the provided address is registered to vote in this poll or not.</li>\n
+    </string>
+    <string name="adminSetIntro">
+        2. <b>Setter Functions for the Voter</b> (Methods that are used to write value to smart contract)
+    </string>
+    <string name="adminSet">
+        <li><b>Register Voter :</b> To register the address provided for voting in the poll.</li>\n
+        <li><b>Register Proposal :</b> To register a new candidate for the poll with the name provided by you as description.</li>\n
+        <li><b>Start Voting Session :</b> After Voting Session begins, all the registered voters can vote for any eligible proposal.</li>\n
+        <li><b>End Voting Session :</b> It marks the end of Voting Phase and no one can vote beyond this time.</li>\n
+        <li><b>Start Proposal Registration :</b> Once Proposal Registration period is started, candidates can come with their proposals to be registered for the poll.</li>\n
+        <li><b>End Proposal Registration :</b> It marks the end of Proposal Registration Phase and no new proposals would be entertained beyond this point.</li>\n
+        <li><b>Tally Votes :</b> The result of the poll has been calculated and now can be checked.</li>\n
+    </string>
+
 </resources>

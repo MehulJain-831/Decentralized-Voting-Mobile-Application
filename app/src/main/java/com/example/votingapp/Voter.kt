@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.navigation.findNavController
 import com.example.votingapp.databinding.FragmentVoterBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -27,6 +28,9 @@ class Voter : Fragment() {
     ): View? {
         binding = DataBindingUtil.inflate<FragmentVoterBinding>(inflater,R.layout.fragment_voter,container,false)
 
+        binding.buttonAbout.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_voter_to_voterKnowMore)
+        }
         //getters
 
         binding.buttonGetProposalDescription.setOnClickListener {
