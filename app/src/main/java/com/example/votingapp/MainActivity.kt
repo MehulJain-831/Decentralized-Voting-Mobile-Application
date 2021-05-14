@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this,R.layout.activity_main)
+        (this as AppCompatActivity).supportActionBar?.title = "Decentralized Voting Application"
+
         CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
             withContext(Dispatchers.Main) {
                 toast("Initializing Web3j")
