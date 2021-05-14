@@ -6,7 +6,7 @@
 
     //voter know more
     <string name="voterIntro">
-        <i><b>Know More about the functions the a Voter can access</b></i>
+        <i><b>Know More about the functions that a Voter can access</b></i>
     </string>
     <string name="voterGetIntro">
         1. <b>Getter Functions for the Voter</b> (Methods that are used to extract value from a contract without changing it)
@@ -27,7 +27,7 @@
 
     //admin know more
     <string name="adminIntro">
-        <i><b>Know More about the functions the an Administrator can access</b></i>
+        <i><b>Know More about the functions that an Administrator can access</b></i>
     </string>
     <string name="adminGetIntro">
         1. <b>Getter Functions for the Administrator</b> (Methods that are used to extract value from a contract without changing it)
@@ -52,5 +52,20 @@
         <li><b>End Proposal Registration :</b> It marks the end of Proposal Registration Phase and no new proposals would be entertained beyond this point.</li>\n
         <li><b>Tally Votes :</b> The result of the poll has been calculated and now can be checked.</li>\n
     </string>
+    <string name="back_to_previous_page">
+        Back to previous page
+    </string>
+    <string name="contract_address_about">
+        <b>Contract Address :</b> It serves as the account address of the poll that is started by an Administrator. To participate in a poll you need to have its contract address, which is obtained by the Administrator of that poll after deploying the contract ona chain.
+    </string>
+    <string name="credentials_about">
+        <b>Credential :</b> It refers to the private key of the account from which you want to participate in a particular poll(access a smart contract). It is used to do various functionalities offered by the poll (interact and make transactions to the contract).
+    </string>
+    <string name="go_back_to_home_page">Go Back to Home Page</string>
+    <string name="know_more_about_contract_address_and_credentials">Know More about Contract Address and Credentials</string>
+    <string name="know_more_about_administrator_and_voter">Know More about Administrator and Voter</string>
+    <string name="go_to_previous_screen">Go to Previous Screen</string>
+    <string name="admin_about"><b>Administrator :</b> She/He is the one who has deployed the smart contract on the chain as has control over lifecycle of the poll,i.e, starting and ending various phase of poll like the voting session and proposal registration period lies in his hands. He is the one who registers new voters so that they are eligible to participate in the poll. Although, having so much power over functionality of poll, she/he himself cannot tamper with the results of the poll.</string>
+    <string name="voter_about"><b>Voter :</b> Voter are candidates eligible to vote and can be registered ONLY by the administrator of the poll.</string>
 
 </resources>

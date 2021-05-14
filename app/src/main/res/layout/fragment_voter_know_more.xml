@@ -17,6 +17,8 @@
             android:layout_marginEnd="64dp"
             android:text="@string/voterIntro"
             android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -32,6 +34,7 @@
             app:layout_constraintBottom_toTopOf="@+id/buttonback"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
+            android:background="@drawable/backgroundscroll"
             app:layout_constraintTop_toBottomOf="@+id/textViewAminVoter">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +49,8 @@
                     android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:text="1. Getter Functions for the Voter (Methods used to extract value from a contract without changing it)"
+                    android:text="@string/voterGetIntro"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -72,6 +76,7 @@
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
                     android:text="@string/voterSetIntro"
+                    android:textSize="16sp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
@@ -99,7 +104,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="32dp"
-            android:text="Back to previous page"
+            android:text="@string/back_to_previous_page"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

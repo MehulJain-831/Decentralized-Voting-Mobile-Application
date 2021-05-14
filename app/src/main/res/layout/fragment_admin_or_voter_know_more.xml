@@ -7,6 +7,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <TextView
             android:id="@+id/textViewAminVoter"
             android:layout_width="0dp"
@@ -14,8 +15,10 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
-            android:text="Know More about Administrator and Voter"
+            android:text="@string/know_more_about_administrator_and_voter"
             android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold|italic"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -27,8 +30,9 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="48dp"
-            android:text="Administrator: She/He is the one who has deployed the smart contract on the chain as has control over lifecycle of the poll,i.e, starting and ending various phase of poll like the voting session and proposal registration period lies in his hands. He is the one who registers new voters so that they are eligible to participate in the poll. Although, having so much power over functionality of poll, she/he himself cannot tamper with the results of the poll."
+            android:text="@string/admin_about"
             android:textAlignment="center"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textViewAminVoter" />
@@ -40,8 +44,9 @@
             android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
-            android:text="Voter: Voter are candidates eligible to vote and can be registered ONLY by the administrator of the poll."
+            android:text="@string/voter_about"
             android:textAlignment="center"
+            android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +59,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="32dp"
-            android:text="Go to Previous Screen"
+            android:text="@string/go_to_previous_screen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />

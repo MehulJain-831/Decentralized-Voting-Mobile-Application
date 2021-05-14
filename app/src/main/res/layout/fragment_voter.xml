@@ -53,6 +53,7 @@
             android:layout_marginBottom="16dp"
             android:text="To Know More about the methods of the voter, click the button below"
             android:textAlignment="center"
+            android:textStyle="italic"
             app:layout_constraintBottom_toTopOf="@+id/buttonAbout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
