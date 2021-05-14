@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_contractAndCredential_to_adminOrVoter"
             app:destination="@id/adminOrVoter" />
+        <action
+            android:id="@+id/action_contractAndCredential_to_contractAndCredentialsKnowMore"
+            app:destination="@id/contractAndCredentialsKnowMore" />
     </fragment>
     <fragment
         android:id="@+id/adminOrVoter"
@@ -25,6 +28,9 @@
         <action
             android:id="@+id/action_adminOrVoter_to_admin"
             app:destination="@id/admin" />
+        <action
+            android:id="@+id/action_adminOrVoter_to_aminOrVoterKnowMore"
+            app:destination="@id/aminOrVoterKnowMore" />
     </fragment>
     <fragment
         android:id="@+id/voter"
@@ -36,4 +42,22 @@
         android:name="com.example.votingapp.Admin"
         android:label="fragment_admin"
         tools:layout="@layout/fragment_admin" />
+    <fragment
+        android:id="@+id/contractAndCredentialsKnowMore"
+        android:name="com.example.votingapp.ContractAndCredentialsKnowMore"
+        android:label="fragment_contract_and_credentials_know_more"
+        tools:layout="@layout/fragment_contract_and_credentials_know_more" >
+        <action
+            android:id="@+id/action_contractAndCredentialsKnowMore_to_contractAndCredential"
+            app:destination="@id/contractAndCredential" />
+    </fragment>
+    <fragment
+        android:id="@+id/aminOrVoterKnowMore"
+        android:name="com.example.votingapp.AdminOrVoterKnowMore"
+        android:label="fragment_amin_or_voter_know_more"
+        tools:layout="@layout/fragment_admin_or_voter_know_more" >
+        <action
+            android:id="@+id/action_aminOrVoterKnowMore_to_adminOrVoter"
+            app:destination="@id/adminOrVoter" />
+    </fragment>
 </navigation>

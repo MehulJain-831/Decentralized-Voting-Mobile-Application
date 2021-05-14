@@ -6,7 +6,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import com.example.votingapp.databinding.FragmentAdminBinding
 import kotlinx.coroutines.CoroutineScope
@@ -20,13 +23,11 @@ import java.util.concurrent.TimeUnit
 class Admin : Fragment() {
 
     private lateinit var binding: FragmentAdminBinding
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate<FragmentAdminBinding>(inflater,R.layout.fragment_admin,container,false)
-
 
         //getters
 
@@ -231,22 +232,22 @@ class Admin : Fragment() {
     //setter methods
     private fun RegisterProposal(propDesc : String) {
         CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {
-
             val result: String
             result = try {
-                val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
-                val transactionReceipt = simpleVoter.registerProposal(propDesc).sendAsync().get(3, TimeUnit.MINUTES)
-                "Successfully added the proposal. Gas used: " + transactionReceipt.gasUsed
-            } catch (e: Exception) {
-                "Error during transaction. Error: " + e.message
-            }
+                    val simpleVoter = SimpleVoting.load(CONTRACT_ADDRESS, web3j, credentials, getGasPrice(), getGasLimit())
+                    val transactionReceipt = simpleVoter.registerProposal(propDesc).sendAsync().get(3, TimeUnit.MINUTES)
+                    "Successfully added the proposal. Gas used: " + transactionReceipt.gasUsed
+                } catch (e: Exception) {
+                    "Error during transaction. Error: " + e.message
+                }
 
-            withContext(Dispatchers.Main) {
-                Log.i("Set Register Prop", result)
-                toast(result)
+                withContext(Dispatchers.Main) {
+                    Log.i("Set Register Prop", result)
+                    toast(result)
+                }
             }
         }
-    }
+
 
     private fun RegisterVoter(voterAdd: String) {
         CoroutineScope(Dispatchers.Main).launch(Dispatchers.IO) {

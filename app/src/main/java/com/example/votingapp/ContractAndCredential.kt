@@ -37,6 +37,9 @@ class ContractAndCredential : Fragment() {
 
             }
         }
+        binding.buttonAbout.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_contractAndCredential_to_contractAndCredentialsKnowMore)
+        }
         return binding.root
     }
 

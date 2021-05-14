@@ -65,6 +65,9 @@ class AdminOrVoter : Fragment() {
                 }
             }
         }
+        binding.buttonAbout.setOnClickListener {
+            view?.findNavController()?.navigate(R.id.action_adminOrVoter_to_aminOrVoterKnowMore)
+        }
         return binding.root
     }
 

@@ -2,60 +2,62 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".ContractAndCredentialsKnowMore">
+    tools:context=".AdminOrVoterKnowMore">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
         <TextView
-            android:id="@+id/textView6"
+            android:id="@+id/textViewAminVoter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="64dp"
-            android:text="Know More about Contract Address and credentials"
+            android:text="Know More about Administrator and Voter"
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/textView5"
+            android:id="@+id/textViewAdmin"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginTop="32dp"
             android:layout_marginEnd="48dp"
-            android:text="Contract Address : It serves as the account address of the poll that is started by an Administrator. To participate in a poll you need to have its contract address, which is obtained by the Administrator of that poll after deploying the contract ona chain."
+            android:text="Administrator: She/He is the one who has deployed the smart contract on the chain as has control over lifecycle of the poll,i.e, starting and ending various phase of poll like the voting session and proposal registration period lies in his hands. He is the one who registers new voters so that they are eligible to participate in the poll. Although, having so much power over functionality of poll, she/he himself cannot tamper with the results of the poll."
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewAminVoter" />
 
         <TextView
-            android:id="@+id/textView7"
+            android:id="@+id/textViewVoter"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="48dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="48dp"
-            android:text="Credential: It refers to the private key of the account from which you want to participate in a particular poll(access a smart contract). It is used to do various functionalities offered by the poll (interact and make transactions to the contract)."
+            android:text="Voter: Voter are candidates eligible to vote and can be registered ONLY by the administrator of the poll."
             android:textAlignment="center"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+            app:layout_constraintTop_toBottomOf="@+id/textViewAdmin" />
 
         <Button
-            android:id="@+id/buttonHome"
+            android:id="@+id/buttonBack"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="64dp"
             android:layout_marginEnd="64dp"
             android:layout_marginBottom="32dp"
-            android:text="Go Back to Home Page"
+            android:text="Go to Previous Screen"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </layout>
